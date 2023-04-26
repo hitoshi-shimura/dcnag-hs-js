@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Button Example</title>
+  </head>
+  <body>
+    <div id="container"></div>
+    <div id="output"></div>
+    <script>
+        class Button {
+        constructor(text, onClick) {
+          this.text = text;
+          this.onClick = onClick;
+          this.render();
+        }
+        
+        render() {
+          const buttonElement = document.createElement('button');
+          buttonElement.textContent = this.text;
+          buttonElement.addEventListener('click', this.onClick);
+          document.getElementById('button-container').appendChild(buttonElement);
+        }
+      }
+      
+      class Display {
+        constructor() {
+          this.render();
+        }
+        
+        render() {
+          const displayElement = document.createElement('div');
+          document.getElementById('display-container').appendChild(displayElement);
+          this.displayElement = displayElement;
+        }
+        
+        setText(text) {
+          this.displayElement.textContent = text;
+        }
+      }
+
+      class NumberButton extends Button {
+        constructor(number, onClick) {
+          super(number.toString(), onClick);
+          this.number = number;
+        }
+      }
+
+      const container = document.querySelector("#container");
+      const output = document.querySelector("#output");
+
+      const buttons = [];
+
+      for (let i = 1; i <= 20; i++) {
+        const button = new NumberButton(i, () => {
+          output.textContent = `Button ${i} was clicked`;
+        });
+        buttons.push(button);
+        container.appendChild(button.element);
+      }
+    </script>
+  </body>
+</html>

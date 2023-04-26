@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Button and Display Example</title>
+  </head>
+  <body>
+    <div id="button-container"></div>
+    <div id="display-container"></div>
+    
+    <script>
+      class Button {
+        constructor(text, onClick) {
+          this.text = text;
+          this.onClick = onClick;
+          this.render();
+        }
+        
+        render() {
+          const buttonElement = document.createElement('button');
+          buttonElement.textContent = this.text;
+          buttonElement.addEventListener('click', this.onClick);
+          document.getElementById('button-container').appendChild(buttonElement);
+        }
+      }
+      
+      class Display {
+        constructor() {
+          this.render();
+        }
+        
+        render() {
+          const displayElement = document.createElement('div');
+          document.getElementById('display-container').appendChild(displayElement);
+          this.displayElement = displayElement;
+        }
+        
+        setText(text) {
+          this.displayElement.textContent = text;
+        }
+      }
+
+      
+      const display = new Display();
+      
+      function onButtonClick() {
+        const text = 'DOREMI'; 
+        display.setText(text);
+      }
+      
+      const button = new Button('Click me', onButtonClick);
+
+
+    </script>
+  </body>
+</html>

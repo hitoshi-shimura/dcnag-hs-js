@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>chk003</title>
+    <head>
+        <link rel="stylesheet" type="text/css" href="ss.css">
+      </head>
+      
+</head>
+<body>
+    
+    <div id="text-display"></div>  
+
+    <div class="button-container">
+        <button class="button button1" onclick="displayText()">ド</button>
+        <button class="button button2" onclick="displayText()">ド＃</button>
+        <button class="button button3" onclick="displayText()">レ</button>
+        <button class="button button4" onclick="displayText()">レ＃</button>
+        <button class="button button5" onclick="displayText()">ミ</button>
+        <button class="button button6" onclick="displayText()">ファ</button>
+        <button class="button button7" onclick="displayText()">ファ＃</button>
+        <button class="button button8" onclick="displayText()">ソ</button>
+        <button class="button button9" onclick="displayText()">ソ＃</button>
+        <button class="button button10" onclick="displayText()">ラ</button>
+        <button class="button button11" onclick="displayText()">ラ＃</button>
+        <button class="button button12" onclick="displayText()">シ</button>
+        <button class="button button13" >ド</button>
+    </div>
+
+    <script>
+        function displayText() {
+            var button = event.target;
+            var text = button.textContent;
+            var textDisplay = document.getElementById("text-display");
+            textDisplay.textContent = text; 
+        }
+    </script>
+</body>
+</html>
+
+
+
+  

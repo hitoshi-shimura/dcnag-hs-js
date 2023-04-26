@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>music button</title>
+    <link rel="stylesheet" href="ssj.css">
+<!--- レスポンシブのために記述しておく ---> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">    
+  </head>
+  <body>
+    <button id="button1">ド</button>
+
+    <script>
+
+    // ドの音を出力　
+        const button1 = document.getElementById("button1");
+        button1.addEventListener("click", function() {
+            const audio = new Audio("maou_se_inst_piano1_1do.mp3"); // 音声ファイルのパスを指定してください。
+            audio.play();
+        });
+
+    </script>
+
+    </script>
+  </body>
+</html>
