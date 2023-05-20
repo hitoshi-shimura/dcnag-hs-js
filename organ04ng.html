@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>音階再生プログラム</title>
+  <script src="script.js"></script>
+</head>
+<body>
+  <button onclick="playSound(261.63)">ド</button>
+  <button onclick="playSound(293.66)">レ</button>
+  <button onclick="playSound(329.63)">ミ</button>
+  <button onclick="playSound(349.23)">ファ</button>
+  <button onclick="playSound(392.00)">ソ</button>
+  <button onclick="playSound(440.00)">ラ</button>
+  <button onclick="playSound(493.88)">シ</button>
+  <button onclick="playSound(523.25)">ド</button>
+
+  <button onclick="playNotes()">演奏開始</button>
+
+</body>
+<script>
+
+  function playSound(frequency) {
+    const audioContext = new AudioContext();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    oscillator.type = 'sine';
+    oscillator.frequency.value = frequency;
+    gainNode.gain.value = 0.5;
+ 
+    oscillator.start();
+    setTimeout(() => {
+      oscillator.stop();
+    }, 1000); // 1秒後にオシレータの再生を停止
+  }
+
+//   const notes = [
+//     261.63, // ド
+//     293.66, // レ
+//     329.63, // ミ
+//     349.23, // ファ
+//     392.00, // ソ
+//     440.00, // ラ
+//     493.88, // シ
+//     523.25  // ド
+//   ];
+
+//   function playNotes() {
+//     const audioContext = new AudioContext();  
+//     let currentNote = 0;
+
+//     function playNote() {
+//       const oscillator = audioContext.createOscillator();
+//       const gainNode = audioContext.createGain();
+//       oscillator.connect(gainNode);
+//       gainNode.connect(audioContext.destination);
+//       oscillator.type = 'sine';
+//       oscillator.frequency.value = notes[currentNote];
+//       gainNode.gain.value = 0.5;
+
+//       oscillator.start();
+//       setTimeout(() => {
+//         oscillator.stop();
+//         currentNote++;
+//         if (currentNote < notes.length) {
+//           playNote();
+//         }
+//       }, 1000); // 1秒後にオシレータの再生を停止し、次の音を演奏
+//     }
+
+//     playNote();
+//   }
+
+    const notes = [
+        261.63, // ド
+        293.66, // レ
+        329.63, // ミ
+        349.23, // ファ
+        392.00, // ソ
+        440.00, // ラ
+        493.88, // シ
+        523.25  // ド
+    ];
+
+
+    function playNotes(notes) {
+      notes.forEach((note, index) => {
+         setTimeout(() => {
+             playSound(note);
+         }, index * 1000); // インデックスに応じて待機時間を調整
+      });
+    }
+
+    // function playNotes() {
+    //         const audioContext = new AudioContext();
+
+    //    let i=0;
+
+    //     for (let i = 0; i < notes.length; i++) {
+    //         const oscillator = audioContext.createOscillator();
+    //         const gainNode = audioContext.createGain();
+    //         oscillator.connect(gainNode);
+    //         gainNode.connect(audioContext.destination);
+    //         oscillator.type = 'sine';
+    //         oscillator.frequency.value = notes[i];
+    //         gainNode.gain.value = 0.5;
+    //         oscillator.start();
+    //         setTimeout(() => {
+    //             oscillator.stop();
+    //         }, 2000); // 2秒後にオシレータの再生を停止
+    //         // 次の音符を演奏する前に一定時間待つ
+    //         if (i < notes.length - 1) {
+    //             sleep(2000); // 2秒待機
+    //         }
+    //     }
+    // }
+
+    // function sleep(ms) {
+    //     return new Promise(resolve => setTimeout(resolve, ms));
+    // }
+
+
+  </script>
+
+</html>

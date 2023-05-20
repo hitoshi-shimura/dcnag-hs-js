@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>music button</title>
+    <link rel="stylesheet" href="ssj.css">
+<!--- レスポンシブのために記述しておく ---> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">    
+  </head>
+  <body>
+    <button id="playBtn">ド</button>
+<!--   <button id="button2">ド5</button>  -->
+
+    <script>
+
+        const audio = new Audio("maou_se_inst_piano1_1do.mp3"); // 音源ファイルを指定する
+
+        let intervalID; // setInterval()関数の戻り値を格納する変数
+
+        // ボタンが押されたときの処理
+        function playSound() {
+        audio.currentTime = 0; // 再生位置を先頭に戻す
+        audio.play(); // 音を再生する
+        intervalID = setInterval(function() {
+            if (audio.ended) { // 音源が終了したら再生位置を先頭に戻す
+                audio.currentTime = 0;
+                audio.play();
+            }
+        }, 10); // 10ミリ秒ごとにループ再生する
+        }
+
+        // ボタンが離されたときの処理
+        function stopSound() {
+            audio.pause(); // 音を停止する
+            clearInterval(intervalID); // ループ再生を停止する
+        }
+
+        const playBtn = document.getElementById("playBtn");
+        playBtn.addEventListener("mousedown", playSound);
+        playBtn.addEventListener("mouseup", stopSound);
+        playBtn.addEventListener("mouseleave", stopSound);
+   
+    </script>
+  </body>
+</html>

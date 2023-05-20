@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>音階再生プログラム</title>
+  <script src="script.js"></script>
+</head>
+<body>
+  <button onclick="playSound(261.63)">ド</button>
+  <button onclick="playSound(293.66)">レ</button>
+  <button onclick="playSound(329.63)">ミ</button>
+  <button onclick="playSound(349.23)">ファ</button>
+  <button onclick="playSound(392.00)">ソ</button>
+  <button onclick="playSound(440.00)">ラ</button>
+  <button onclick="playSound(493.88)">シ</button>
+  <button onclick="playSound(523.25)">ド</button>
+</body>
+<script>
+
+  function playSound(frequency) {
+    const audioContext = new AudioContext();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    oscillator.type = 'sine';
+    oscillator.frequency.value = frequency;
+    gainNode.gain.value = 0.5;
+ 
+    oscillator.start();
+    setTimeout(() => {
+      oscillator.stop();
+    }, 1000); // 1秒後にオシレータの再生を停止
+  }
+
+</script>
+
+</html>
